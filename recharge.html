@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <select id="lines">
+            <option>MTN</option>
+            <option>GLO</option>
+            <option>AIRTEL</option>
+            <option>9MOBILE</option>
+        </select>
+        <select id="amount">
+            <option>100</option>
+            <option>200</option>
+            <option>500</option>
+            <option>1000</option>
+        </select>
+        <button onclick="generate()">GENERATE</button>
+        <p id="screen"></p>
+        <hr>
+        <input id="loadC">
+        <button onclick="load()">LOAD</button>
+        <p id="screen2"></p>
+    </body>
+    <script>
+        let line = document.getElementById('lines')
+        let page = document.getElementById('screen')
+        let page2 = document.getElementById('screen2')
+        let loadCard = document.getElementById('loadC')
+        let cardNo
+        let lineVal
+        let amountVal
+        function generate() {
+            lineVal = line.value
+            amountVal = amount.value
+            cardNo = (Math.floor(Math.random()*9999999999999 + 10000000000000))
+            page.innerHTML = `${cardNo} <button onclick="copy()">COPY</button>`
+        }
+        function copy() {
+            navigator.clipboard.writeText(cardNo)
+        }
+        function load() {
+            if (loadCard.value == `*300*${cardNo}#`) {
+                page2.innerHTML = `You have successfully loaded ${lineVal} card of ${amountVal}`
+            } else {
+                page2.innerHTML = 'Incorrect number'
+            }
+        }
+    </script>
+</html>
